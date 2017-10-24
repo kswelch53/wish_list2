@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Login Registration</title>
+  </head>
+  <body>
+    <div class="wrapper">
+
+      <div class = "registration">
+
+        <!-- When users hit the "Register" button, the action takes them to the app-level urls.py where the pattern matches register to a views.py method called register, which is also a named route, register, (though the names don't have to be the same). Originally the action was "/register", but after it became a named route, it was changed to python url syntax, as seen in the brackets {} 'users:register' matches the named route users on the project-level url.py to the named route register on the app-level urls.py-->
+
+        <form class="" action="/register" method="post">
+          {% csrf_token %}
+          <h3>Register</h3>
+          <p>
+            Name:
+            <input type="text" name="name" value="">
+          </p>
+          <p>
+            User name:
+            <input type="text" name="username" value="">
+          </p>
+          <p>
+            Password:
+            <input type="text" name="password" value="">
+          </p>
+          <p>
+              *Password should be at least 8 characters
+          </p>
+          <p>
+            Password Confirmation:
+            <input type="text" name="confirm_password" value="">
+          </p>
+          <p>
+            Date Hired:
+            <input type="date" name="dob">
+          </p>
+          <input type="submit" name="submit" value="Register">
+        </form>
+
+      </div><!--registration end div-->
+
+        <!-- When users hit the "Login" button, the action takes them to the app-level urls.py where the pattern matches register to a views.py method called /login-->
+      <div class="login">
+        <form class="" action="/login" method="post">
+          {% csrf_token %}
+          <h3>Log in</h3>
+          <p>
+          Username:
+          <input type="text" name="username" value="">
+          </p>
+          <p>
+          Password:
+          <input type="password" name="password" value="">
+          </p>
+          <input type="submit" name="submit" value="Login">
+        </form>
+      </div><!--login end div-->
+
+    </div><!--wrapper end div-->
+
+<!-- for flashed messages  -->
+    {% if messages %}
+      <ul class = "messages">
+        {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+
+
+  </body>
+</html>
+
+<!-- This is the main page. It displays registration and login fields ->
